@@ -82,8 +82,16 @@ function calculerprix(identifiant) {
 
     let nombre = 0;
     while (nombre <= 2) {
-        events[nombre].price = 1;
-        // events.splice(0,1,)
+
+        let id = events[nombre].id;
+        for (var i = 0; i < bars.length; i++) {
+            if (bars[i].id == id) {
+                events[nombre].price = bars[i].pricePerHour * events[nombre].time + bars[i].pricePerPerson * events[nombre].persons;
+            }
+        }
+
+        
+       
         nombre++;
     }
 
