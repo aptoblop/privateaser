@@ -3,6 +3,7 @@
 //list of bats
 //useful for ALL 5 steps
 //could be an array of objects that you fetched from api or database
+console.log("blop a tous !! ");
 const bars = [{
   'id': 'f944a3ff-591b-4d5b-9b67-c7e08cba9791',
   'name': 'freemousse-bar',
