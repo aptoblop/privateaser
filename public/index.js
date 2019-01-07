@@ -4,6 +4,8 @@
 //useful for ALL 5 steps
 //could be an array of objects that you fetched from api or database
 console.log("blop a tous !! ");
+
+
 const bars = [{
   'id': 'f944a3ff-591b-4d5b-9b67-c7e08cba9791',
   'name': 'freemousse-bar',
@@ -35,8 +37,8 @@ const events = [{
   'persons': 8,
   'options': {
     'deductibleReduction': false
-  },
-  'price': 0,
+    },
+    'price':0,
   'commission': {
     'insurance': 0,
     'treasury': 0,
@@ -61,7 +63,7 @@ const events = [{
   'id': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
   'booker': 'otacos',
   'barId': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
-  'distance': 5,
+  'time': 5,
   'persons': 80,
   'options': {
     'deductibleReduction': true
@@ -73,6 +75,21 @@ const events = [{
     'privateaser': 0
   }
 }];
+
+console.log(events[0].id);
+
+function calculerprix(identifiant) {
+
+    let nombre = 0;
+    while (nombre <= 2) {
+        events[nombre].price = 1;
+        // events.splice(0,1,)
+        nombre++;
+    }
+
+}
+
+
 
 //list of actors for payment
 //useful from step 5
@@ -150,3 +167,4 @@ const actors = [{
 console.log(bars);
 console.log(events);
 console.log(actors);
+calculerprix();
