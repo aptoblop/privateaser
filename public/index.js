@@ -76,23 +76,19 @@ const events = [{
   }
 }];
 
-console.log(events[0].id);
 
-function calculerprix(identifiant) {
 
-    let nombre = 0;
-    while (nombre <= 2) {
+function calculeprix(id, time, person)
+{
+    const getBar = id => bars.find(bar => bar.id === id);
+    let prix = getBar.pricePerHour * time + getBar.pricePerPerson * person
+    return prix;
+   }
 
-        let id = events[nombre].id;
-        for (var i = 0; i < bars.length; i++) {
-            if (bars[i].id == id) {
-                events[nombre].price = bars[i].pricePerHour * events[nombre].time + bars[i].pricePerPerson * events[nombre].persons;
-            }
-        }
+function modifyPrice() {
 
-        
-       
-        nombre++;
+    for (var i = 0; i < events.length; i++) {
+        events[i].price = calculeprix(events[i].id, events[i].time, events[i].persons)
     }
 
 }
@@ -175,4 +171,4 @@ const actors = [{
 console.log(bars);
 console.log(events);
 console.log(actors);
-calculerprix();
+modifyPrice();
