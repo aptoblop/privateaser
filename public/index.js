@@ -81,14 +81,21 @@ const events = [{
 function calculeprix(id, time, person)
 {
     const getBar = id => bars.find(bar => bar.id === id);
-    let prix = getBar.pricePerHour * time + getBar.pricePerPerson * person
+    let numerosdubar;
+    for (var i = 0; i < bars.length; i++) {
+        if (bars[i].id == id) {
+            numerosdubar = i;
+        }
+    }
+    let prix = bars[numerosdubar].pricePerHour * time + bars[numerosdubar].pricePerPerson * person;
     return prix;
-   }
+}
 
 function modifyPrice() {
 
-    for (var i = 0; i < events.length; i++) {
-        events[i].price = calculeprix(events[i].id, events[i].time, events[i].persons)
+    for (var i = 0; i < events.length; i++)
+    {
+        events[i].price = calculeprix(events[i].barId, events[i].time, events[i].persons)
     }
 
 }
