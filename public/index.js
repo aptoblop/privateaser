@@ -96,9 +96,24 @@ function modifyPrice() {
     for (var i = 0; i < events.length; i++)
     {
         events[i].price = calculeprix(events[i].barId, events[i].time, events[i].persons)
+        if (events[i].persons > 10) { events[i].price = events[i].price * 0.9; }
+        if (events[i].persons > 20) { events[i].price = events[i].price * 0.7; }
+        if (events[i].persons > 30) { events[i].price = events[i].price * 0.5; }
+
     }
 
 }
+function modifyCommission ()
+{
+    console.log("commision : " + events[0].commission.insurance);
+    for (var i = 0; i < events.length; i++) {
+        let commission = events[i].price * 0.3;
+        events[i].commission.insurance = commission * 0.5;
+        events[i].commission.treasury = events[i].persons;
+        events[i].commission.privateaser = commission - (events[i].commission.insurance + events[i].commission.treasury);
+    }
+}
+
 
 
 
@@ -179,3 +194,5 @@ console.log(bars);
 console.log(events);
 console.log(actors);
 modifyPrice();
+modifyCommission();
+
