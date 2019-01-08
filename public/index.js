@@ -100,12 +100,12 @@ function modifyPrice() {
         if (events[i].persons > 20) { events[i].price = events[i].price * 0.7; }
         if (events[i].persons > 30) { events[i].price = events[i].price * 0.5; }
 
+        if (events[i].deductibleReduction) { events[i].price = events[i].price + events[i].persons; }
     }
 
 }
 function modifyCommission ()
 {
-    console.log("commision : " + events[0].commission.insurance);
     for (var i = 0; i < events.length; i++) {
         let commission = events[i].price * 0.3;
         events[i].commission.insurance = commission * 0.5;
@@ -188,11 +188,28 @@ const actors = [{
     'type': 'credit',
     'amount': 0
   }]
-}];
+    }];
+
+
+function sameID(element, ID) {
+    if (element.id == ID)
+    return ;
+}
+
+function updateActors() {
+    for (var i = 0; i < actors.length; i++) {
+        const found = events.find(sameID);
+        console.log("le found: " + found);
+        actors[i].who = found.booker;
+        
+
+    }
+}
 
 console.log(bars);
 console.log(events);
 console.log(actors);
 modifyPrice();
 modifyCommission();
+updateActors();
 
