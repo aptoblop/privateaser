@@ -196,15 +196,53 @@ function sameID(element, ID) {
     return ;
 }
 
+
+
+function eventIndexById(eventId) {
+    for (var i = 0; i < events.length; i++) {
+        if (events[i].id == eventId) {
+            return i;
+        }
+    }
+}
+
 function updateActors() {
+
+    var eventIndex = 0;
     for (var i = 0; i < actors.length; i++) {
-        const found = events.find(sameID);
-        console.log("le found: " + found);
-        actors[i].who = found.booker;
-        
+
+        eventIndex = eventIndexById(actors[i].eventId);
+        for (var j = 0; j < actors[i].payment.length; j++) {
+
+            switch (actors[i].payment[j].who) {
+                case 'booker':
+
+                    actors[i].payment[j].amount = events[eventIndex].price;
+                    break;
+                case 'bar':
+
+                    actors[i].payment[j].amount = events[eventIndex].price - (events[eventIndex].commission.insurance + events[eventIndex].commission.treasury + events[eventIndex].commission.privateaser);
+                    break;
+                case 'insurance':
+
+                    actors[i].payment[j].amount = events[eventIndex].commission.insurance;
+                    break;
+                case 'treasury':
+                    actors[i].payment[j].amount = events[eventIndex].commission.treasury;
+                    break;
+                case 'privateaser':
+                    actors[i].payment[j].amount = events[eventIndex].commission.privateaser;
+                    break;
+                default:
+                    alert("no amount found");
+                    break;
+            }
+        }
 
     }
 }
+
+
 
 console.log(bars);
 console.log(events);
